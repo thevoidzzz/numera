@@ -3,7 +3,7 @@ name = "numera"
 version = "0.0.0"
 description = "Natural-language questions over a read-only finance warehouse"
 requires-python = ">=3.12"
-dependencies = ["psycopg[binary]>=3.2"]
+dependencies = ["psycopg[binary]>=3.2", "sqlglot>=26"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
@@ -16,7 +16,7 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 
 [tool.setuptools.package-data]
-numera = ["infrastructure/*.sql"]
+numera = ["infrastructure/*.sql", "infrastructure/*.txt"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
