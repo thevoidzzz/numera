@@ -1,0 +1,77 @@
+insert
+INSERT INTO warehouse.journal_line (line_id, entity_code, account_code, period_code, amount, memo) VALUES (99, 'WEST', '4000', '2026-03', 1.00, 'no')
+---
+update
+UPDATE warehouse.journal_line SET amount = 0
+---
+delete
+DELETE FROM warehouse.journal_line
+---
+merge
+MERGE INTO warehouse.journal_line AS l USING warehouse.account AS a ON l.account_code = a.code WHEN MATCHED THEN UPDATE SET amount = 0
+---
+drop
+DROP TABLE warehouse.journal_line
+---
+alter
+ALTER TABLE warehouse.journal_line ADD COLUMN extra text
+---
+truncate
+TRUNCATE warehouse.journal_line
+---
+create
+CREATE TABLE warehouse.blocked (id integer)
+---
+grant
+GRANT SELECT ON warehouse.journal_line TO numera_reader
+---
+revoke
+REVOKE SELECT ON warehouse.journal_line FROM numera_reader
+---
+copy
+COPY warehouse.journal_line TO STDOUT
+---
+call
+CALL warehouse.nope()
+---
+do
+DO $$ BEGIN PERFORM 1; END $$
+---
+lock
+LOCK TABLE warehouse.journal_line
+---
+select_into
+SELECT amount INTO warehouse.leak FROM warehouse.journal_line
+---
+set_role
+SET ROLE numera
+---
+set
+SET statement_timeout = '1s'
+---
+two_statements
+SELECT 1; DROP TABLE warehouse.journal_line
+---
+insert_cte
+WITH written AS (INSERT INTO warehouse.journal_line (line_id) VALUES (1) RETURNING line_id) SELECT line_id FROM written
+---
+explain
+EXPLAIN SELECT 1
+---
+show
+SHOW statement_timeout
+---
+values
+VALUES (1)
+---
+unparseable
+this is not sql
+---
+empty
+
+---
+blank
+   
+---
+double_semicolon
+SELECT 1;;
