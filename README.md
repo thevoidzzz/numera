@@ -6,9 +6,11 @@ Natural-language questions over a read-only finance warehouse. A question counts
 
 GitHub Actions runs `pytest` on pull requests and on pushes to `main`. The job installs no model client and uses no API key.
 
+The local database is PostgreSQL 16.
+
 ```bash
 pip install -e ".[dev]"
-pytest
+DATABASE_URL=postgresql://numera@localhost:5432/numera pytest
 ```
 
 ## Contributing

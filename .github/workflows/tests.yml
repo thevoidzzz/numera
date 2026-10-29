@@ -12,6 +12,22 @@ jobs:
   test:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres@sha256:1beaa3084eee2676f20a9cd9928f0bf2c5bf674f8e49f81017912183d377c61c # 16
+        env:
+          POSTGRES_USER: numera
+          POSTGRES_DB: numera
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U numera"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://numera@localhost:5432/numera
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
