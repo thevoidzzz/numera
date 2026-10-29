@@ -16,7 +16,7 @@ build-backend = "setuptools.build_meta"
 where = ["src"]
 
 [tool.setuptools.package-data]
-numera = ["infrastructure/schema.sql", "infrastructure/seed.sql"]
+numera = ["infrastructure/*.sql"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
