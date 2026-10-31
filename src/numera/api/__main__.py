@@ -6,14 +6,16 @@ from numera.api.app import create_app
 from numera.infrastructure.reader import Reader
 from numera.infrastructure.sql_gate import review_statement
 from numera.infrastructure.stand_in import StandInModel
+from numera.infrastructure.warehouse import load_warehouse
 
 
 def app_from_env():
-    """Build the API from DATABASE_URL. The warehouse is not reloaded."""
+    """Build the API from DATABASE_URL and load the seed with the owner role."""
 
     database_url = os.environ.get("DATABASE_URL")
     if not database_url:
         raise SystemExit("DATABASE_URL is required")
+    load_warehouse(database_url)
     return create_app(StandInModel(), review_statement, Reader(database_url).run)
 
 
