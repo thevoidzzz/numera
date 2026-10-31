@@ -15,11 +15,20 @@ _FORBIDDEN_PREFIXES = (
     "httpx",
     "openai",
 )
+_API_FORBIDDEN_PREFIXES = ("psycopg", "sqlalchemy", "sqlglot", "openai")
 
 
 def test_domain_does_not_import_infrastructure_or_the_api() -> None:
+    violations = _imports(_ROOTS, _FORBIDDEN_PREFIXES)
+    violations.extend(_imports((_PACKAGE / "api",), _API_FORBIDDEN_PREFIXES))
+    assert violations == []
+
+
+def _imports(roots, prefixes: tuple[str, ...]) -> list[str]:
     violations: list[str] = []
-    for root in _ROOTS:
+    for root in roots:
+        if not root.exists():
+            continue
         for path in sorted(root.rglob("*.py")):
             tree = ast.parse(path.read_text(encoding="utf-8"))
             for node in ast.walk(tree):
@@ -29,6 +38,6 @@ def test_domain_does_not_import_infrastructure_or_the_api() -> None:
                 elif isinstance(node, ast.ImportFrom) and node.module is not None:
                     modules = [node.module]
                 for module in modules:
-                    if module.startswith(_FORBIDDEN_PREFIXES):
+                    if module.startswith(prefixes):
                         violations.append(f"{path.name} imports {module}")
-    assert violations == []
+    return violations
