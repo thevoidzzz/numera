@@ -1,0 +1,34 @@
+services:
+  postgres:
+    image: postgres@sha256:1beaa3084eee2676f20a9cd9928f0bf2c5bf674f8e49f81017912183d377c61c # 16
+    environment:
+      POSTGRES_USER: numera
+      POSTGRES_DB: numera
+      POSTGRES_HOST_AUTH_METHOD: trust
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U numera -d numera"]
+      interval: 2s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: .
+      target: runtime
+    environment:
+      DATABASE_URL: postgresql://numera@postgres:5432/numera
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  tests:
+    build:
+      context: .
+      target: tests
+    environment:
+      DATABASE_URL: postgresql://numera@postgres:5432/numera
+    depends_on:
+      postgres:
+        condition: service_healthy

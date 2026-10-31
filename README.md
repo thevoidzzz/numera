@@ -43,6 +43,15 @@ DATABASE_URL=postgresql://numera@localhost:5432/numera python -m numera.api
 
 `POST /v1/answers` with a JSON body `{"question": "..."}`. A forbidden statement or a result that is not one number is still HTTP 200. `value` is the decimal string the database returned, or `null`. Empty questions, a model timeout, a model response that is not a statement, and a database that is down are `application/problem+json`.
 
+## Docker
+
+```bash
+docker compose run --rm --build tests
+docker compose up --build api
+```
+
+The test image runs the same suite. The API listens on port 8000 and loads the seed on startup. PostgreSQL stays on the Compose network.
+
 ## Contributing
 
 Open a pull request against `main`. The `test` check has to pass before merge.

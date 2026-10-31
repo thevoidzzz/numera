@@ -2,7 +2,7 @@
 
 import json
 from decimal import Decimal
-from pathlib import Path
+from importlib.resources import files
 
 import pytest
 
@@ -14,8 +14,6 @@ from numera.eval.load import load_questions
 from numera.infrastructure.reader import Reader
 from numera.infrastructure.sql_gate import review_statement
 from numera.infrastructure.stand_in import StandInModel
-
-_QUESTIONS = Path(__file__).resolve().parents[1] / "src" / "numera" / "eval" / "questions.json"
 
 
 def _result(gold: str | None, *, refused: bool, value: Decimal | None, sql: str = "SELECT 1") -> QuestionResult:
@@ -69,7 +67,7 @@ def test_a_delivered_answer_without_sql_fails_the_report() -> None:
 
 
 def test_questions_do_not_carry_statements() -> None:
-    raw = json.loads(_QUESTIONS.read_text(encoding="utf-8"))
+    raw = json.loads(files("numera.eval").joinpath("questions.json").read_text(encoding="utf-8"))
 
     assert len(raw) == 50
     assert all(set(item) == {"id", "question", "gold"} for item in raw)
