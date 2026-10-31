@@ -1,0 +1,252 @@
+[
+  {
+    "id": "west-march-revenue",
+    "question": "What is West desk revenue for March 2026?",
+    "gold": "1750.50"
+  },
+  {
+    "id": "north-march-revenue",
+    "question": "What is North desk revenue for March 2026?",
+    "gold": "800.00"
+  },
+  {
+    "id": "march-revenue-both",
+    "question": "What is March 2026 revenue across both desks?",
+    "gold": "2550.50"
+  },
+  {
+    "id": "west-march-payroll",
+    "question": "What is West desk payroll for March 2026?",
+    "gold": "-320.00"
+  },
+  {
+    "id": "north-march-accrual",
+    "question": "What is the North desk accrual for March 2026?",
+    "gold": "-100.00"
+  },
+  {
+    "id": "west-february-cash",
+    "question": "What is West desk cash for February 2026?",
+    "gold": "50.00"
+  },
+  {
+    "id": "north-february-revenue",
+    "question": "What is North desk revenue for February 2026?",
+    "gold": "0.00"
+  },
+  {
+    "id": "line-count",
+    "question": "How many journal lines are in the warehouse?",
+    "gold": "7"
+  },
+  {
+    "id": "march-line-count",
+    "question": "How many journal lines are in March 2026?",
+    "gold": "5"
+  },
+  {
+    "id": "february-line-count",
+    "question": "How many journal lines are in February 2026?",
+    "gold": "2"
+  },
+  {
+    "id": "west-march-net",
+    "question": "What is West desk revenue plus payroll for March 2026?",
+    "gold": "1430.50"
+  },
+  {
+    "id": "all-amounts",
+    "question": "What is the sum of every journal amount?",
+    "gold": "2180.50"
+  },
+  {
+    "id": "negative-line-count",
+    "question": "How many journal lines have a negative amount?",
+    "gold": "2"
+  },
+  {
+    "id": "zero-line-count",
+    "question": "How many journal lines have a zero amount?",
+    "gold": "1"
+  },
+  {
+    "id": "positive-line-count",
+    "question": "How many journal lines have a positive amount?",
+    "gold": "4"
+  },
+  {
+    "id": "entity-count",
+    "question": "How many legal entities are in the warehouse?",
+    "gold": "2"
+  },
+  {
+    "id": "account-count",
+    "question": "How many accounts are in the warehouse?",
+    "gold": "4"
+  },
+  {
+    "id": "period-count",
+    "question": "How many fiscal periods are in the warehouse?",
+    "gold": "2"
+  },
+  {
+    "id": "max-amount",
+    "question": "What is the largest journal amount?",
+    "gold": "1500.00"
+  },
+  {
+    "id": "min-amount",
+    "question": "What is the smallest journal amount?",
+    "gold": "-320.00"
+  },
+  {
+    "id": "west-revenue-all",
+    "question": "What is West desk revenue across every period?",
+    "gold": "1750.50"
+  },
+  {
+    "id": "north-revenue-all",
+    "question": "What is North desk revenue across every period?",
+    "gold": "800.00"
+  },
+  {
+    "id": "income-total",
+    "question": "What is the total of income accounts?",
+    "gold": "2550.50"
+  },
+  {
+    "id": "expense-total",
+    "question": "What is the total of expense accounts?",
+    "gold": "-320.00"
+  },
+  {
+    "id": "asset-total",
+    "question": "What is the total of asset accounts?",
+    "gold": "50.00"
+  },
+  {
+    "id": "liability-total",
+    "question": "What is the total of liability accounts?",
+    "gold": "-100.00"
+  },
+  {
+    "id": "equity-line-count",
+    "question": "How many journal lines post to equity accounts?",
+    "gold": "0"
+  },
+  {
+    "id": "income-account-count",
+    "question": "How many income accounts are defined?",
+    "gold": "1"
+  },
+  {
+    "id": "west-march-revenue-lines",
+    "question": "How many West desk revenue lines are in March 2026?",
+    "gold": "2"
+  },
+  {
+    "id": "payroll-absolute",
+    "question": "What is the absolute value of West desk March payroll?",
+    "gold": "320.00"
+  },
+  {
+    "id": "revenue-gap",
+    "question": "How much less is North desk March revenue than West desk March revenue?",
+    "gold": "950.50"
+  },
+  {
+    "id": "largest-revenue-line",
+    "question": "What is the largest revenue line?",
+    "gold": "1500.00"
+  },
+  {
+    "id": "smallest-revenue-line",
+    "question": "What is the smallest revenue line?",
+    "gold": "0.00"
+  },
+  {
+    "id": "average-west-march-revenue-line",
+    "question": "What is the average West desk revenue line in March 2026?",
+    "gold": "875.25"
+  },
+  {
+    "id": "absolute-sum",
+    "question": "What is the sum of the absolute journal amounts?",
+    "gold": "3020.50"
+  },
+  {
+    "id": "march-length-days",
+    "question": "How many days are in the March 2026 fiscal period, counting the start and the end?",
+    "gold": "31"
+  },
+  {
+    "id": "february-length-days",
+    "question": "How many days are in the February 2026 fiscal period, counting the start and the end?",
+    "gold": "28"
+  },
+  {
+    "id": "north-line-count",
+    "question": "How many journal lines belong to the North desk?",
+    "gold": "3"
+  },
+  {
+    "id": "west-line-count",
+    "question": "How many journal lines belong to the West desk?",
+    "gold": "4"
+  },
+  {
+    "id": "nonzero-line-count",
+    "question": "How many journal lines are not zero?",
+    "gold": "6"
+  },
+  {
+    "id": "march-expense",
+    "question": "What is March 2026 expense?",
+    "gold": "-320.00"
+  },
+  {
+    "id": "cash-line-count",
+    "question": "How many cash lines are in the warehouse?",
+    "gold": "1"
+  },
+  {
+    "id": "west-february-total",
+    "question": "What amount did the West desk post in February 2026?",
+    "gold": "50.00"
+  },
+  {
+    "id": "north-march-total",
+    "question": "What is the sum of North desk amounts in March 2026?",
+    "gold": "700.00"
+  },
+  {
+    "id": "distinct-accounts-used",
+    "question": "How many distinct accounts appear on journal lines?",
+    "gold": "4"
+  },
+  {
+    "id": "distinct-entities-used",
+    "question": "How many distinct legal entities appear on journal lines?",
+    "gold": "2"
+  },
+  {
+    "id": "march-cash-lines",
+    "question": "How many cash lines are in March 2026?",
+    "gold": "0"
+  },
+  {
+    "id": "february-payroll-lines",
+    "question": "How many payroll lines are in February 2026?",
+    "gold": "0"
+  },
+  {
+    "id": "west-desk-headcount",
+    "question": "What is the West desk headcount?",
+    "gold": null
+  },
+  {
+    "id": "west-desk-name",
+    "question": "What is the name of the West desk?",
+    "gold": null
+  }
+]
