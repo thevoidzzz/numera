@@ -7,7 +7,8 @@ from time import perf_counter
 from typing import Literal
 
 from numera.application.ports import AcceptsStatement, RunsStatement, StatementModel
-from numera.domain.errors import PrivilegeError, StatementFailed
+from numera.domain.errors import ModelSchemaError, PrivilegeError, RequestError, StatementFailed
+from numera.domain.limits import QUESTION_MAX_CHARS
 from numera.domain.number import one_decimal
 
 
@@ -35,10 +36,17 @@ def answer_question(
     *,
     clock: Callable[[], float] = perf_counter,
 ) -> Answer:
-    """Ask the model for a statement. Execute it only when the gate accepts it."""
+    """Ask the model for a statement. Execute it only when the gate accepts it.
 
+    A schema mismatch is tried once more. A timeout is not retried.
+    """
+
+    if question.strip() == "":
+        raise RequestError("question must not be empty")
+    if len(question) > QUESTION_MAX_CHARS:
+        raise RequestError(f"question must be at most {QUESTION_MAX_CHARS} characters")
     started = clock()
-    proposed = model.propose(question)
+    proposed = _propose(model, question)
     model_ms = (clock() - started) * 1000
     if not accepts(proposed.sql):
         return _answer(
@@ -80,6 +88,13 @@ def answer_question(
         model_ms=model_ms,
         execution_ms=execution_ms,
     )
+
+
+def _propose(model: StatementModel, question: str):
+    try:
+        return model.propose(question)
+    except ModelSchemaError:
+        return model.propose(question)
 
 
 def _answer(proposed, *, refused, reason, value, row_count, model_ms, execution_ms) -> Answer:
