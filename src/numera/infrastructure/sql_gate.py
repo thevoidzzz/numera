@@ -1,7 +1,12 @@
 """One read statement may pass. Everything else stops here."""
 
+import logging
+
 import sqlglot
 from sqlglot import exp
+
+# The forbidden set is unsupported syntax on purpose. A warning per statement hides the report.
+logging.getLogger("sqlglot").setLevel(logging.ERROR)
 
 MAX_STATEMENT_LENGTH = 4000
 

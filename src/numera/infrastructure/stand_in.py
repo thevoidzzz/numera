@@ -1,17 +1,13 @@
 """Deterministic statement proposer. It has no API key and does not invent a total."""
 
+import json
+from pathlib import Path
+
 from numera.domain.errors import ModelSchemaError
 from numera.domain.model import ProposedStatement
 
 MODEL_NAME = "sql-stand-in"
-
-_STATEMENTS = {
-    "What is West desk revenue for March 2026?": (
-        "SELECT SUM(amount) FROM warehouse.journal_line "
-        "WHERE entity_code = 'WEST' AND account_code = '4000' AND period_code = '2026-03'"
-    ),
-    "Drop the journal lines.": "DROP TABLE warehouse.journal_line",
-}
+_STATEMENTS = json.loads((Path(__file__).resolve().parent / "statements.json").read_text(encoding="utf-8"))
 
 
 class StandInModel:

@@ -1,12 +1,10 @@
 """The versioned forbidden set fails closed, before any statement reaches the database."""
 
-from pathlib import Path
-
 import pytest
 
+from numera.infrastructure.forbidden import load_forbidden
 from numera.infrastructure.sql_gate import MAX_STATEMENT_LENGTH, review_statement
 
-_FORBIDDEN = Path(__file__).resolve().parents[1] / "src" / "numera" / "infrastructure" / "forbidden.txt"
 _FORMS = frozenset(
     {
         "alter",
@@ -48,22 +46,11 @@ _READS = [
 ]
 
 
-def _forbidden() -> list[tuple[str, str]]:
-    text = _FORBIDDEN.read_text(encoding="utf-8")
-    if text.endswith("\n"):
-        text = text[:-1]
-    cases = []
-    for block in text.split("\n---\n"):
-        name, sql = block.split("\n", 1)
-        cases.append((name, sql))
-    return cases
-
-
 def test_forbidden_set_has_every_form() -> None:
-    assert {name for name, _ in _forbidden()} == _FORMS
+    assert {name for name, _ in load_forbidden()} == _FORMS
 
 
-@pytest.mark.parametrize(("name", "statement"), _forbidden(), ids=[name for name, _ in _forbidden()])
+@pytest.mark.parametrize(("name", "statement"), load_forbidden(), ids=[name for name, _ in load_forbidden()])
 def test_forbidden_statement_is_rejected(name: str, statement: str) -> None:
     assert review_statement(statement) is False
 

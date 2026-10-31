@@ -23,3 +23,7 @@ class ModelSchemaError(Exception):
 
 class ModelTimeout(Exception):
     """The model did not respond in time."""
+
+
+class EvalError(ValueError):
+    """The evaluation set cannot be scored."""
