@@ -66,6 +66,12 @@ docker compose down
 
 The response is HTTP 200. `value` is `1750.50` and `sql` is the statement that ran.
 
+Set `PUBLISH_PORT` when another process is already listening on 8000. The database stays unpublished.
+
+```bash
+PUBLISH_PORT=8002 docker compose up --build --detach api
+```
+
 ## Contributing
 
 Open a pull request against `main`. The `test` check has to pass before merge.

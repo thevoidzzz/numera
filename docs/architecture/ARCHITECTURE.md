@@ -65,6 +65,8 @@ Salida 200:
 
 No es un error de transporte que la sentencia esté prohibida o que el resultado no sea un número. El error es de entrada, del modelo o de la base.
 
+El proceso escucha en el 8000. Compose publica ese puerto en el host, o el valor de `PUBLISH_PORT` cuando el 8000 del host ya está ocupado. La base no se publica.
+
 Errores en `application/problem+json`:
 
 | Caso | Estado |
