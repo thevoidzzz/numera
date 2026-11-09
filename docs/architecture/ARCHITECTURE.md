@@ -86,6 +86,10 @@ Tampoco hay un umbral de “SQL bastante parecido”. O el valor decimal coincid
 
 El esquema, la semilla, las preguntas, el README, la API, los tests y los commits de esta versión están en inglés. Esta arquitectura y los ADR están en español. [ADR-0008](../adr/0008-public-warehouse-is-english.md).
 
+## Prueba
+
+El codespace usa la imagen Linux por defecto y 2 núcleos. No hay prebuild. El README levanta el mismo Compose: el sustituto, sin clave, y la base sin puerto publicado. Borrar el codespace apaga la prueba.
+
 ## Versión siguiente, todavía no
 
 Un modelo de pago, en una corrida fechada, cuando el accuracy del sustituto ya esté impreso. Medir si una pregunta en lenguaje natural consigue proponer una sentencia prohibida. Identidad antes de conectar un warehouse que no sea sintético. AWS cuando el servicio ya corra en Docker, con el mismo contenedor, el coste de dejarlo encendido y el comando para apagarlo, sin NAT gateway.

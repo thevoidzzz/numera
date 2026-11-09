@@ -52,6 +52,20 @@ docker compose up --build api
 
 The test image runs the same suite. The API listens on port 8000 and loads the seed on startup. PostgreSQL stays on the Compose network.
 
+## Try it
+
+Create a codespace on the 2-core machine. It uses the default image. Delete the codespace when you finish.
+
+```bash
+docker compose up --build --detach --wait api
+curl --retry 5 --retry-connrefused --retry-delay 1 -s -X POST localhost:8000/v1/answers \
+  -H 'content-type: application/json' \
+  -d '{"question":"What is West desk revenue for March 2026?"}'
+docker compose down
+```
+
+The response is HTTP 200. `value` is `1750.50` and `sql` is the statement that ran.
+
 ## Contributing
 
 Open a pull request against `main`. The `test` check has to pass before merge.
