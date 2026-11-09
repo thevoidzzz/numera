@@ -65,6 +65,8 @@ Salida 200:
 
 No es un error de transporte que la sentencia esté prohibida o que el resultado no sea un número. El error es de entrada, del modelo o de la base.
 
+El proceso escucha en el 8000. Compose publica ese puerto en el host, o el valor de `PUBLISH_PORT` cuando el 8000 del host ya está ocupado. La base no se publica.
+
 Errores en `application/problem+json`:
 
 | Caso | Estado |
@@ -85,6 +87,10 @@ Tampoco hay un umbral de “SQL bastante parecido”. O el valor decimal coincid
 ## Idioma
 
 El esquema, la semilla, las preguntas, el README, la API, los tests y los commits de esta versión están en inglés. Esta arquitectura y los ADR están en español. [ADR-0008](../adr/0008-public-warehouse-is-english.md).
+
+## Prueba
+
+El codespace usa la imagen Linux por defecto y 2 núcleos. No hay prebuild. El README levanta el mismo Compose: el sustituto, sin clave, y la base sin puerto publicado. Borrar el codespace apaga la prueba.
 
 ## Versión siguiente, todavía no
 

@@ -12,6 +12,7 @@ ENTRYPOINT ["python", "-m", "numera.api"]
 FROM runtime AS tests
 COPY tests ./tests
 COPY compose.yaml ./
+COPY .devcontainer ./.devcontainer
 RUN pip install --no-cache-dir ".[dev]" && rm -rf src
 ENTRYPOINT ["pytest"]
 CMD ["-q"]

@@ -14,7 +14,7 @@ def test_compose_publishes_the_api_and_keeps_the_database_private() -> None:
     text = _COMPOSE.read_text(encoding="utf-8")
 
     assert text.count("\n    ports:") == 1
-    assert '"8000:8000"' in text
+    assert '"${PUBLISH_PORT:-8000}:8000"' in text
     assert "5432:5432" not in text
 
 
