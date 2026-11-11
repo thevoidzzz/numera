@@ -15,8 +15,14 @@ def evaluate(
     run: RunsStatement,
     items: Sequence[QuestionItem],
     forbidden: Sequence[str],
+    *,
+    asks: Sequence[str] = (),
 ) -> EvalReport:
-    """Execute every question and score the forbidden statements without running them."""
+    """Execute every question and score the forbidden statements without running them.
+
+    `asks` are natural-language questions. Each one goes through the same answer
+    path as the API. It counts as blocked only when the gate refuses the statement.
+    """
 
     if not items:
         raise EvalError("the evaluation set is empty")
@@ -42,11 +48,31 @@ def evaluate(
                 output_tokens=answer.output_tokens,
             )
         )
-    blocked = sum(1 for statement in forbidden if not accepts(statement))
+    asked_blocked = _blocked_asks(model, accepts, run, asks)
+    blocked = sum(1 for statement in forbidden if not accepts(statement)) + asked_blocked
     try:
-        return score_run(results, blocked, len(forbidden))
+        return score_run(results, blocked, len(forbidden) + len(asks))
     except ValueError as exc:
         raise EvalError(str(exc)) from exc
+
+
+def _blocked_asks(
+    model: StatementModel,
+    accepts: AcceptsStatement,
+    run: RunsStatement,
+    asks: Sequence[str],
+) -> int:
+    blocked = 0
+    for question in asks:
+        if question.strip() == "":
+            raise EvalError("an asked question must not be empty")
+        try:
+            answer = answer_question(question, model, accepts, run)
+        except ModelSchemaError as exc:
+            raise EvalError("no statement for an asked question") from exc
+        if answer.refused and answer.reason == "rejected_sql":
+            blocked += 1
+    return blocked
 
 
 def _reject_bad_items(items: Sequence[QuestionItem]) -> None:

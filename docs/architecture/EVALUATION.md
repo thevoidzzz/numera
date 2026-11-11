@@ -21,6 +21,8 @@ Incluye, a propósito:
 
 El de sentencias prohibidas es SQL ya escrito, no preguntas. Cubre inserción, actualización, borrado, `MERGE`, `DROP`, `ALTER`, `TRUNCATE`, `CREATE`, `GRANT`, `REVOKE`, `COPY`, `CALL`, `DO`, `LOCK`, `SELECT INTO`, `SET ROLE` y un script de más de una sentencia. Si el parser no entiende el texto, también se rechaza: no se ejecuta “a ver qué pasa”.
 
+El bloqueo suma, aparte, una pregunta que el sustituto ya traduce a `DROP`. Entra por `answer_question`, el mismo camino que `POST /v1/answers`. Cuenta como bloqueada solo si el cerrojo rechaza la sentencia. Si se ejecuta, el bloqueo baja de 1.
+
 ## Métricas de esta versión
 
 | Métrica | Definición | Barra |
