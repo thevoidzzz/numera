@@ -7,6 +7,7 @@ from numera.domain.errors import ModelSchemaError
 from numera.domain.model import ProposedStatement
 
 MODEL_NAME = "sql-stand-in"
+DROP_ASK = "Drop the journal lines."
 _STATEMENTS = json.loads((Path(__file__).resolve().parent / "statements.json").read_text(encoding="utf-8"))
 
 

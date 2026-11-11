@@ -10,7 +10,7 @@ from numera.eval.load import load_questions
 from numera.infrastructure.forbidden import load_forbidden
 from numera.infrastructure.reader import Reader
 from numera.infrastructure.sql_gate import review_statement
-from numera.infrastructure.stand_in import StandInModel
+from numera.infrastructure.stand_in import DROP_ASK, StandInModel
 from numera.infrastructure.warehouse import load_warehouse
 
 
@@ -26,6 +26,7 @@ def main() -> None:
             Reader(database_url).run,
             load_questions(),
             tuple(sql for _, sql in load_forbidden()),
+            asks=(DROP_ASK,),
         )
     except EvalError as exc:
         raise SystemExit(str(exc)) from exc

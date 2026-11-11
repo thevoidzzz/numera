@@ -21,7 +21,7 @@ Cerrarlo de verdad es otro cambio: una identidad, antes de cargar datos que no s
 
 ## Lo que el modelo puede intentar
 
-Una pregunta puede pedir un `DROP` o un segundo statement. Esta versión no afirma que el modelo se niegue. Afirma que la sentencia, si no es un solo `SELECT`, no se ejecuta, y que el rol no puede escribir. El conjunto prohibido mide el cerrojo con SQL ya escrito. Medir si una pregunta en lenguaje natural empuja al modelo a proponer ese SQL es una corrida posterior, contra esta misma API. Este repositorio no publica una colección de ataques.
+Una pregunta puede pedir un `DROP` o un segundo statement. Esta versión no afirma que el modelo se niegue. Afirma que la sentencia, si no es un solo `SELECT`, no se ejecuta, y que el rol no puede escribir. El conjunto prohibido mide el cerrojo con SQL ya escrito. El comando de evaluación, además, hace una pregunta en lenguaje natural por el mismo camino que la API. El sustituto la convierte en `DROP`. Si el cerrojo la deja pasar, el bloqueo deja de ser 1 y el comando termina con error. No hay una colección de ataques: es esa pregunta, la misma que ya conoce el sustituto.
 
 ## Datos
 
